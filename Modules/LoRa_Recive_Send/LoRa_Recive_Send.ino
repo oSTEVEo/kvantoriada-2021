@@ -1,14 +1,14 @@
 #include <SPI.h>
 #include <LoRa.h>
 
-#define RED 6
-#define GREEN 5
+#define RED A3
+#define GREEN A5
 
 void setup() {
   Serial.begin(9600);
   Serial.setTimeout(10);
-  while (!Serial);
-  Serial.println("LoRa Terminal");
+  delay(2);
+  //Serial.println("LoRa Terminal");
 
   if (!LoRa.begin(433E6)) {
     Serial.println("Starting LoRa failed!");
@@ -36,23 +36,41 @@ void loop() {
     }
   }
   if (Serial.available()) {
-    String str = Serial.readString();
-    LoRa.beginPacket();
-    LoRa.print(str);
-    LoRa.endPacket(1);
+    sendPacket(Serial.readString());
   }
 }
 
 String ParsePacket() {
   int packetSize = LoRa.parsePacket();
+  bool errorFlag = false;
+  String packet;
   if (packetSize) {
-    String packet;
     while (LoRa.available()) {
-      packet += (char)LoRa.read();
+      char symbol = (char)LoRa.read();
+      if ((symbol >= '0' && symbol <= '9')
+          || (symbol >= 'A' && symbol <= 'Z')
+          || (symbol == '.' || symbol == ' ' || symbol == '-' || symbol == ';' || symbol == ',')) { //||(symbol >= 'a' && symbol <= 'z')
+        packet += symbol;
+      }
+      else {
+        errorFlag = true;
+      }
     }
+    //TODO: повтор
+  }
+  if (errorFlag) {
+    return "";
+  }
+  else {
     return packet;
   }
-  return "";
+}
+
+
+void sendPacket(String str) {
+  LoRa.beginPacket();
+  LoRa.print(str);
+  LoRa.endPacket(1);
 }
 
 //LoRa.packetRssi();
