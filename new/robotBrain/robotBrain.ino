@@ -1,8 +1,12 @@
-#include <SoftwareSerial.h>
 #include <DHT.h>
-DHT dht(10, DHT11);
+DHT dht(12, DHT11);
 
+#include <SoftwareSerial.h>
 SoftwareSerial ss(2, 3);
+
+#include <Servo.h>
+Servo myservo;
+
 
 #include "lib.h"
 #include "moving.h"
@@ -24,6 +28,8 @@ void setup() {
 
   pinMode(AG0, INPUT); // 1 - 470 Ом, другой 1000 Ом (Примерно 4.8В на выходе)
 
+  myservo.attach(BACHOK);
+  myservo.write(closed);
 }
 
 void loop() {
@@ -58,9 +64,7 @@ void loop() {
           impulseTime = pulseIn (Echo, HIGH);
           distance_sm = impulseTime / 58;
           curentData.bak = (int(distance_sm / 29.5f * 100));
-
           sendData();
-
           break;
         }
       case 'A':
@@ -71,8 +75,7 @@ void loop() {
           startAngle = curentData.angle;
         }
         break;
-      case '
-      ':
+      case 'E':
         //alarm stop
         digitalWrite(D1, LOW);
         analogWrite(M1, LOW);
@@ -84,7 +87,8 @@ void loop() {
 
         curentData.sost = AlramStop;
         break;
-      case 'R':
+        
+      case 'R': //1 двигатель вперёд
         digitalWrite(D1, LOW);
         analogWrite(M1, maxSpeed);
         break;
@@ -93,7 +97,7 @@ void loop() {
         analogWrite(M1, 255 - maxSpeed);
         break;
 
-      case 'U':
+      case 'U': //1 двигатель назад
         digitalWrite(D2, LOW);
         analogWrite(M2, maxSpeed);
         break;
@@ -102,13 +106,34 @@ void loop() {
         analogWrite(M2, 255 - maxSpeed);
         break;
 
-      case 'Z':
-        digitalWrite(D1, LOW);
+      case 'Z': //1 двигатель остановить
+        digitalWrite(D1, LOW); 
         analogWrite(M1, LOW);
         break;
-      case 'J':
-        digitalWrite(D2, LOW);
+      case 'J': //2 двигатель остановить
+        digitalWrite(D2, LOW); 
         analogWrite(M2, LOW);
+        break;
+
+      case 'V': //бак открыть
+        myservo.write(open);
+        break;
+      case 'B':
+        myservo.write(closed);
+        break;
+
+     case 'W': //Погрузка
+        digitalWrite(LOAD, HIGH);
+        break;
+      case 'Q': //Стоп погрузки
+        digitalWrite(LOAD, LOW); 
+        break;
+        
+      case 'T': //выгрузка
+        digitalWrite(UNLOAD, HIGH);
+        break;
+      case 'N': //Стоп выгрузки
+        digitalWrite(UNLOAD, LOW); 
         break;
     }
   }

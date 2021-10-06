@@ -12,6 +12,13 @@
 #define CEP1 13       // Направление вращение двигателя 2
 #define CEP2 12       // ШИМ вывод для управления двигателем 2
 
+#define BACHOK 11
+#define LOAD 8
+#define UNLOAD 10
+
+const int open = 50;
+const int closed = 50;
+
 struct HomePosition {
   float lat;
   float lng;
