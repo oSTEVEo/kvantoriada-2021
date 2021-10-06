@@ -1,0 +1,36 @@
+.tabs {
+  width: 100%;
+  padding: 0px;
+  margin: 0 auto;
+}
+.tabs > input {
+  display: none;
+}
+.tabs > div {
+  display: none;
+  padding: 12px;
+  border: 1px solid #c0c0c0;
+  background: #ffffff;
+}
+.tabs > label {
+  display: inline-block;
+  padding: 7px;
+  margin: 0 -5px -1px 0;
+  text-align: center;
+  color: #666666;
+  border: 1px solid #c0c0c0;
+  background: #e0e0e0;
+  cursor: pointer;
+}
+.tabs > input:checked + label {
+  color: #000000;
+  border: 1px solid #c0c0c0;
+  border-bottom: 1px solid #ffffff;
+  background: #ffffff;
+}
+#tab_1:checked ~ #txt_1,
+#tab_2:checked ~ #txt_2,
+#tab_3:checked ~ #txt_3,
+#tab_4:checked ~ #txt_4 {
+  display: block;
+}
