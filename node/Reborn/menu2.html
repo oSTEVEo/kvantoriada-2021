@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Control Panel</title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.6.1/css/ol.css"
+      type="text/css"
+    />
+    <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.6.1/build/ol.js"></script>
+    <style>
+      .map {
+        height: 800px;
+        width: 95%;
+        text-align: "center";
+      }
+    </style>
+  </head>
+  <body>
+    <link rel="stylesheet" type="text/css" href="menuc.css" />
+    <div class="tabs">
+      <input type="radio" name="inset" value="" id="tab_1" checked />
+      <label for="tab_1"><p>Управление</p></label>
+
+      <input type="radio" name="inset" value="" id="tab_2" />
+      <label for="tab_2"><p>Карта</p></label>
+
+      <input type="radio" name="inset" value="" id="tab_3" />
+      <label for="tab_3"><p>Вкладка №3</p></label>
+
+      <input type="radio" name="inset" value="" id="tab_4" />
+      <label for="tab_4"><p>Вкладка №4</p></label>
+
+      <div id="txt_1">
+        <div class="left-half">
+          <div class="left-top-button"></div>
+          <div class="left-stop-button"></div>
+          <div class="left-bottom-button"></div>
+        </div>
+        <div class="right-half">
+          <div class="right-top-button"></div>
+          <div class="right-stop-button"></div>
+          <div class="right-bottom-button"></div>
+        </div>
+      </div>
+      <div id="txt_2">
+        <h1>My Map</h1>
+        <div id="map" class="map"></div>
+
+        <form class="form-inline">
+          <input
+            class="form-control mr-2 mb-2 mt-2"
+            type="button"
+            value="Undo"
+            id="undo"
+          />
+        </form>
+        <br />
+        <button onclick="front()">front</button>
+        <button onclick="read()">read</button>
+        <br />
+        <script src="control.js"></script>
+        <script src="main.js" type="text/javascript"></script>
+      </div>
+      <div id="txt_3">
+        <p>Размеры содержимого вкладок</p>
+        <p>могут отличаться по высоте!</p>
+      </div>
+      <div id="txt_4">
+        <img src="image/logo.png" width="533" height="77" alt="Лого" />
+      </div>
+    </div>
+  </body>
+</html>
