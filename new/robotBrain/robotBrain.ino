@@ -7,7 +7,6 @@ SoftwareSerial ss(2, 3);
 #include <Servo.h>
 Servo myservo;
 
-
 #include "lib.h"
 #include "moving.h"
 
@@ -30,6 +29,7 @@ void setup() {
 
   myservo.attach(BACHOK);
   myservo.write(closed);
+  delay(500);
 }
 
 void loop() {
@@ -116,10 +116,10 @@ void loop() {
         break;
 
       case 'V': //бак открыть
-        myservo.write(open);
+        myservo.write(open_); delay(500); 
         break;
       case 'B':
-        myservo.write(closed);
+        myservo.write(closed); delay(500);
         break;
 
      case 'W': //Погрузка

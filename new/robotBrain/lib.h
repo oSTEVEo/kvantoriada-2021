@@ -16,8 +16,8 @@
 #define LOAD 8
 #define UNLOAD 10
 
-const int open = 50;
-const int closed = 50;
+const int open_ = 45;
+const int closed = 80;
 
 struct HomePosition {
   float lat;
