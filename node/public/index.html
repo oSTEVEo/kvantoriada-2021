@@ -2,56 +2,55 @@
 <html lang="en">
 
 <head>
-  <title>OpenLayers example</title>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.6.1/css/ol.css"
-    type="text/css" />
-  <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.6.1/build/ol.js"></script>
-  <style>
-    .map {
-      height: 800px;
-      width: 95%;
-      text-align: "center";
-    }
-  </style>
+    <title>OpenLayers example</title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.6.1/css/ol.css" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.6.1/build/ol.js"></script>
+    <style>
+        .map {
+            height: 800px;
+            width: 95%;
+            text-align: "center";
+        }
+    </style>
 </head>
 
 <body>
-  <h1 id="logElem">My Map</h1>
-  <div id="map" class="map"></div>
-  <br>
+    <h1 id="logElem">My Map</h1>
+    <div id="map" class="map"></div>
+    <br>
 
-  <button class="form-control mr-2 mb-2 mt-2" id="undo">Отмена</button>
-  <button onclick="getDataPrint()">Получить данные</button>
-  <br>
-  <button onclick="read()">read</button>
-  <br>
-  <p id="text"></p>
-  <br>
+    <button class="form-control mr-2 mb-2 mt-2" id="undo">Отмена</button>
+    <button onclick="getDataPrint()">Получить данные</button>
+    <br>
+    <button onclick="read()">read</button>
+    <br>
+    <p id="text"></p>
+    <br>
 
-  <button onclick="httpGet('/front?cmd=A');">автономный режим</button><br>
-  <button onclick="httpGet('/front?cmd=E');">аварийная остановка</button><br>
+    <button onclick="httpGet('/front?cmd=A');">автономный режим</button><br>
+    <button onclick="httpGet('/front?cmd=E');">аварийная остановка</button><br>
 
-  <button onclick="httpGet('/front?cmd=R');">прав двигатель вперёд</button><br>
-  <button onclick="httpGet('/front?cmd=D');">прав двигатель назад</button><br>
-  <button onclick="httpGet('/front?cmd=U');">лев двигатель вперёд</button><br>
-  <button onclick="httpGet('/front?cmd=L');">лев двигатель назад</button><br>
+    <button onclick="httpGet('/front?cmd=R');">прав двигатель вперёд</button><br>
+    <button onclick="httpGet('/front?cmd=D');">прав двигатель назад</button><br>
+    <button onclick="httpGet('/front?cmd=U');">лев двигатель вперёд</button><br>
+    <button onclick="httpGet('/front?cmd=L');">лев двигатель назад</button><br>
 
-  <button onclick="httpGet('/front?cmd=Z');">Выключение двигателя прав</button><br>
-  <button onclick="httpGet('/front?cmd=J');">Выключение двигателя лев</button><br>
+    <button onclick="httpGet('/front?cmd=Z');">Выключение двигателя прав</button><br>
+    <button onclick="httpGet('/front?cmd=J');">Выключение двигателя лев</button><br>
 
 
-  <button onclick="httpGet('/front?cmd=W');">вкл погрузку мусора</button><br>
-  <button onclick="httpGet('/front?cmd=Q');">выкл погрузку мусора</button><br>
-  <button onclick="httpGet('/front?cmd=V');">открыть бачок</button><br>
-  <button onclick="httpGet('/front?cmd=B');">закрыть бачок</button><br>
-  <button onclick="httpGet('/front?cmd=T');">вкл выгрузка</button><br>
-  <button onclick="httpGet('/front?cmd=N');">выкл выгрузка</button><br>
+    <button onclick="httpGet('/front?cmd=W');">вкл погрузку мусора</button><br>
+    <button onclick="httpGet('/front?cmd=Q');">выкл погрузку мусора</button><br>
+    <button onclick="httpGet('/front?cmd=V');">открыть бачок</button><br>
+    <button onclick="httpGet('/front?cmd=B');">закрыть бачок</button><br>
+    <button onclick="httpGet('/front?cmd=T');">вкл выгрузка</button><br>
+    <button onclick="httpGet('/front?cmd=N');">выкл выгрузка</button><br>
 
-  <script src="control.js"></script>
-  <script src="main.js" type="text/javascript"></script>
+    <script src="control.js"></script>
+    <script src="main.js" type="text/javascript"></script>
 </body>
 
 </html>
