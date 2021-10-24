@@ -1,68 +1,232 @@
-<div class="tabs">
-  <input type="radio" name="inset" value="" id="tab_1" checked />
-  <label for="tab_1">Вкладка №1</label>
+<!DOCTYPE html>
+<html lang="en">
 
-  <input type="radio" name="inset" value="" id="tab_2" />
-  <label for="tab_2">Вкладка №2</label>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.6.1/css/ol.css"
+    type="text/css" />
+  <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.6.1/build/ol.js"></script>
+  <style>
+    .map {
+      height: 800px;
+      width: 95%;
+      text-align: "center";
+    }
 
-  <input type="radio" name="inset" value="" id="tab_3" />
-  <label for="tab_3">Вкладка №3</label>
+    .tabs {
+      width: 100%;
+      padding: 0px;
+      margin: 0 auto;
+    }
 
-  <input type="radio" name="inset" value="" id="tab_4" />
-  <label for="tab_4">Вкладка №4</label>
+    .tabs>input {
+      display: none;
+    }
 
-  <div id="txt_1">
-    <p>Произвольное содержимое...</p>
-    <p>Произвольное содержимое...</p>
-    <p>Произвольное содержимое...</p>
+    .tabs>div {
+      display: none;
+      padding: 12px;
+      border: 1px solid #c0c0c0;
+      background: #ffffff;
+    }
+
+    .tabs>label {
+      display: inline-block;
+      padding: 7px;
+      margin: 0 -5px -1px 0;
+      text-align: center;
+      color: #666666;
+      border: 1px solid #c0c0c0;
+      background: #e0e0e0;
+      cursor: pointer;
+    }
+
+    .tabs>input:checked+label {
+      color: #000000;
+      border: 1px solid #c0c0c0;
+      border-bottom: 1px solid #ffffff;
+      background: #ffffff;
+    }
+
+    #tab_1:checked~#txt_1,
+    #tab_2:checked~#txt_2,
+    #tab_3:checked~#txt_3,
+    #tab_4:checked~#txt_4 {
+      display: block;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      text-align: center;
+      background: black;
+    }
+
+    .tabs {
+      width: 100%;
+      height: auto;
+      padding: 0px;
+      margin: 0 auto;
+    }
+
+    .tabs>input {
+      display: none;
+    }
+
+    .tabs>div {
+      display: none;
+      padding: 12px;
+      border: 1px solid #C0C0C0;
+      background: #FFFFFF;
+    }
+
+    .tabs>label {
+      display: inline-block;
+      height: 40px;
+      width: 20%;
+      margin-bottom: 1%;
+      margin-left: 2%;
+      margin-right: 1%;
+      text-align: center;
+      color: #666666;
+      border: 1px solid lightblue;
+      background-blend-mode: screen;
+      background: black;
+      cursor: pointer;
+      box-shadow: 5px 2px 2px #0876c4;
+      transition: box-shadow 0.5s;
+    }
+
+    label:hover {
+      box-shadow: 10px 8px 8px #0876c4;
+      transition: 0.5s;
+    }
+
+    .tabs>input:checked+label {
+      color: white;
+      background: black;
+    }
+
+    p {
+      font-size: 35px;
+      margin: 0;
+    }
+
+    #tab_1:checked~#txt_1,
+    #tab_2:checked~#txt_2,
+    #tab_3:checked~#txt_3,
+    #tab_4:checked~#txt_4 {
+      display: block;
+      height: 80vh;
+      width: 95vw;
+      margin-left: 1.5vw;
+      margin-right: 1.5vw;
+      background: transparent;
+    }
+
+    .left-half,
+    .right-half {
+      width: 49%;
+      height: 100%;
+      display: inline-flex;
+      background: transparent;
+      margin: 0;
+      padding: 0;
+      align-items: center;
+      justify-content: space-around;
+      flex-direction: column;
+    }
+
+    .left-top-button,
+    .right-top-button,
+    .left-stop-button,
+    .left-bottom-button,
+    .right-stop-button,
+    .right-bottom-button {
+      background: transparent;
+      margin: 1%;
+    }
+
+    .left-top-button,
+    .right-top-button {
+      width: 0;
+      height: 0;
+      border-left: 100px solid transparent;
+      border-right: 100px solid transparent;
+      border-bottom: 200px solid blue;
+      border-radius: 15px;
+    }
+
+    .left-bottom-button,
+    .right-bottom-button {
+      width: 0;
+      height: 0;
+      border-left: 100px solid transparent;
+      border-right: 100px solid transparent;
+      border-top: 200px solid blue;
+      border-radius: 15px;
+    }
+
+    .left-stop-button,
+    .right-stop-button {
+      width: 200px;
+      height: 200px;
+      background: blue;
+      border-radius: 15px;
+    }
+  </style>
+
+</head>
+
+<body>
+
+
+
+  <div class="tabs">
+    <input type="radio" name="inset" value="" id="tab_1" checked />
+    <label for="tab_1">Вкладка №1</label>
+
+    <input type="radio" name="inset" value="" id="tab_2" />
+    <label for="tab_2">Вкладка №2</label>
+
+    <input type="radio" name="inset" value="" id="tab_3" />
+    <label for="tab_3">Вкладка №3</label>
+
+    <input type="radio" name="inset" value="" id="tab_4" />
+    <label for="tab_4">Вкладка №4</label>
+
+    <div id="txt_1">
+      <h1 id="logElem">My Map</h1>
+
+
+      <div id="map" class="map"></div>
+      <script src="main.js" type="text/javascript"></script>
+    </div>
+    <div id="txt_2">
+      <div class="left-half">
+        <div onclick="httpGet('/front?cmd=U');" class="left-top-button"></div>
+        <div onclick="httpGet('/front?cmd=J');" class="left-stop-button"></div>
+        <div onclick="httpGet('/front?cmd=L');" class="left-bottom-button"></div>
+      </div>
+      <div class="right-half">
+        <div onclick="httpGet('/front?cmd=R');" class="right-top-button"></div>
+        <div onclick="httpGet('/front?cmd=Z');" class="right-stop-button"></div>
+        <div onclick="httpGet('/front?cmd=D');" class="right-bottom-button"></div>
+      </div>
+    </div>
+    <div id="txt_3">
+      <p>Размеры содержимого вкладок</p>
+      <p>могут отличаться по высоте!</p>
+    </div>
+    <div id="txt_4">
+      <img src="image/logo.png" width="533" height="77" alt="Лого" />
+    </div>
   </div>
-  <div id="txt_2">
-    <p>Вторая вкладка</p>
-  </div>
-  <div id="txt_3">
-    <p>Размеры содержимого вкладок</p>
-    <p>могут отличаться по высоте!</p>
-  </div>
-  <div id="txt_4">
-    <img src="image/logo.png" width="533" height="77" alt="Лого" />
-  </div>
-</div>
 
-<style type="text/css">
-  .tabs {
-    width: 100%;
-    padding: 0px;
-    margin: 0 auto;
-  }
-  .tabs > input {
-    display: none;
-  }
-  .tabs > div {
-    display: none;
-    padding: 12px;
-    border: 1px solid #c0c0c0;
-    background: #ffffff;
-  }
-  .tabs > label {
-    display: inline-block;
-    padding: 7px;
-    margin: 0 -5px -1px 0;
-    text-align: center;
-    color: #666666;
-    border: 1px solid #c0c0c0;
-    background: #e0e0e0;
-    cursor: pointer;
-  }
-  .tabs > input:checked + label {
-    color: #000000;
-    border: 1px solid #c0c0c0;
-    border-bottom: 1px solid #ffffff;
-    background: #ffffff;
-  }
-  #tab_1:checked ~ #txt_1,
-  #tab_2:checked ~ #txt_2,
-  #tab_3:checked ~ #txt_3,
-  #tab_4:checked ~ #txt_4 {
-    display: block;
-  }
-</style>
+  <script src="control.js"></script>
+</body>
+
+</html>

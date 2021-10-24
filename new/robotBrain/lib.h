@@ -8,7 +8,7 @@
 #define D2 7          // Направление вращение двигателя 2
 #define M2 6          // ШИМ вывод для управления двигателем 2
 
-#define CONV 11       // Направление вращение двигателя 1
+#define CONV 11       // Направление вращение двигателя 1 
 #define CEP1 13       // Направление вращение двигателя 2
 #define CEP2 12       // ШИМ вывод для управления двигателем 2
 
@@ -16,8 +16,8 @@
 #define LOAD 8
 #define UNLOAD 10
 
-const int open_ = 45;
-const int closed = 80;
+const int open_ = 30;
+const int closed = 70;
 
 struct HomePosition {
   float lat;
@@ -31,9 +31,9 @@ struct  data {
   int term;
   int bak;
   int carg;
-  float angle;
   float temp;
   int dist;
+  float angle;
 };
 
 enum Sosts {
@@ -105,23 +105,23 @@ void readGps() {
 }
 
 void sendData() {
-  //printFloat(curentData.lat, 1, 9, 6);
+  Serial.print('S');
   Serial.print(curentData.dist);
-  Serial.print('-');
+  Serial.print('X');
   printFloat(curentData.lng, 1, 9, 6);
-  Serial.print(' ');
+  Serial.print('X');
+  printFloat(curentData.lat, 1, 9, 6);
+  Serial.print('X');
+  
   Serial.print(curentData.sost);
-  Serial.print(' ');
-  /*Serial.print(curentData.term);
-  Serial.print('-');
+  Serial.print('X');
+  Serial.print(curentData.term);
+  Serial.print('X');
   Serial.print(curentData.bak);
-  Serial.print('-');
-  Serial.print(curentData.carg);*/
-  Serial.print(curentData.temp);
-  Serial.print('-');
+  Serial.print('X');
+  Serial.print(curentData.carg);
+  Serial.print('X');
   Serial.print(curentData.angle);
-  Serial.print('-');
-  Serial.print(curentData.dist);
   Serial.print(';');
 }
 

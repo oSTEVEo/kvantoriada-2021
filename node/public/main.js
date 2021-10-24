@@ -53,12 +53,12 @@ const addMapPoint = (lat, lng, label, offsetY) => {
   map.addLayer(vectorLayer);
 };
 
-addMapPoint(56.33, 44.0, "test", 0);
+addMapPoint(56.332871, 44.038892, "test", 0);
 
 map.on("singleclick", function (evt) {
   var pos = ol.proj.transform(evt.coordinate, "EPSG:3857", "EPSG:4326");
 
-  createRound(pos[1], pos[0], 100);
+  createRound(pos[1], pos[0], 3);
   //addMapPoint(pos[1], pos[0], 'test', 0)
 });
 
