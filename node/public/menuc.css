@@ -1,36 +1,142 @@
+body {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  background: black;
+  color: Wheat;
+}
+
+.map {
+  height: 90%;
+  width: 98%;
+  margin: 0 auto;
+}
+
 .tabs {
   width: 100%;
   padding: 0px;
   margin: 0 auto;
 }
+
 .tabs > input {
   display: none;
 }
+
 .tabs > div {
   display: none;
   padding: 12px;
   border: 1px solid #c0c0c0;
   background: #ffffff;
 }
+
 .tabs > label {
   display: inline-block;
-  padding: 7px;
-  margin: 0 -5px -1px 0;
+  height: 40px;
+  width: 20%;
+  margin-bottom: 1%;
+  margin-left: 2%;
+  margin-right: 1%;
   text-align: center;
-  color: #666666;
-  border: 1px solid #c0c0c0;
-  background: #e0e0e0;
+  color: #a7a7a7;
+  border: 1px solid lightblue;
+  background-blend-mode: screen;
+  background: black;
   cursor: pointer;
+  box-shadow: 5px 2px 2px #0876c4;
+  transition: box-shadow 0.5s;
 }
+
 .tabs > input:checked + label {
   color: #000000;
   border: 1px solid #c0c0c0;
   border-bottom: 1px solid #ffffff;
   background: #ffffff;
 }
+
 #tab_1:checked ~ #txt_1,
 #tab_2:checked ~ #txt_2,
 #tab_3:checked ~ #txt_3,
 #tab_4:checked ~ #txt_4 {
   display: block;
+  height: 90vh;
+  margin-left: 1.5vh;
+  margin-right: 1.5vh;
+  background: transparent;
+}
+
+.tabs {
+  width: 100%;
+  height: auto;
+  padding: 0px;
+  margin: 0 auto;
+}
+
+.tabs > input {
+  display: none;
+}
+
+label:hover {
+  box-shadow: 10px 8px 8px #0876c4;
+  transition: 0.5s;
+}
+
+.tabs > input:checked + label {
+  color: white;
+  background: black;
+}
+
+p {
+  font-size: 35px;
+  margin: 0;
+}
+
+.left-half,
+.right-half {
+  width: 49%;
+  height: 100%;
+  display: inline-flex;
+  background: transparent;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: column;
+}
+
+.left-top-button,
+.right-top-button,
+.left-stop-button,
+.left-bottom-button,
+.right-stop-button,
+.right-bottom-button {
+  background: transparent;
+  margin: 1%;
+}
+
+.left-top-button,
+.right-top-button {
+  width: 0;
+  height: 0;
+  border-left: 100px solid transparent;
+  border-right: 100px solid transparent;
+  border-bottom: 200px solid blue;
+  border-radius: 15px;
+}
+
+.left-bottom-button,
+.right-bottom-button {
+  width: 0;
+  height: 0;
+  border-left: 100px solid transparent;
+  border-right: 100px solid transparent;
+  border-top: 200px solid blue;
+  border-radius: 15px;
+}
+
+.left-stop-button,
+.right-stop-button {
+  width: 200px;
+  height: 200px;
+  background: blue;
+  border-radius: 15px;
 }

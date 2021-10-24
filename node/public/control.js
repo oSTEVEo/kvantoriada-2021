@@ -20,13 +20,21 @@ var info = {
   angle: 0,
 };
 
-function generaleView(){
-  document.getElementById('logElem').innerHTML="Температура="+ info.term+"  Заполненость бака="+ info.fill+" Зарядка="+ info.charge + "Угол по компасу="+info.angle
-  //12v - 788, 533 
-
+function generaleView() {
+  document.getElementById("logElem").innerHTML =
+    "Температура: " +
+    info.term +
+    "; Заполненость бака: " +
+    info.fill +
+    "; Зарядка: " +
+    info.charge +
+    "; Угол по компасу: " +
+    info.angle;
+  //12v - 788, 533
 }
 
-function parsData(text) {//parsData("qwertyuiopS10X25.563265X85.322561X1X25X90X91X180;zxcvbnm")
+function parsData(text) {
+  //parsData("qwertyuiopS10X25.563265X85.322561X1X25X90X91X180;zxcvbnm")
   var i = 0;
   while (text[i] != "S" && i < text.length) {
     i++;
@@ -55,8 +63,8 @@ function getDataPrint() {
   httpGet("/front?cmd=S");
   setTimeout(() => {
     var buff = httpGet("/read", (text) => {
-      if( parsData(text)==1);
-        generaleView();
+      if (parsData(text) == 1);
+      generaleView();
       console.log(text);
     });
   }, 1000);
