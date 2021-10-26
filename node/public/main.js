@@ -12,6 +12,7 @@ var map = new ol.Map({
   }),
 });
 
+
 const addMapPoint = (lat, lng, label, offsetY) => {
   iconStyle = [
     new ol.style.Style({
@@ -20,7 +21,7 @@ const addMapPoint = (lat, lng, label, offsetY) => {
         anchorXUnits: "fraction",
         anchorYUnits: "fraction",
         src: "img/marker.png",
-        scale: 0.1,
+        scale: 0.05,
       }),
     }),
     new ol.style.Style({
@@ -50,19 +51,26 @@ const addMapPoint = (lat, lng, label, offsetY) => {
     }),
     style: iconStyle,
   });
+  //vectorLayer.getSource().clear();
+  
   map.addLayer(vectorLayer);
 };
 
-addMapPoint(56.332871, 44.038892, "test", 0);
+//addMapPoint(56.332871, 44.038892, "test", 0);
+
 
 map.on("singleclick", function (evt) {
+  if(basIsSet==3)
+  return;
   var pos = ol.proj.transform(evt.coordinate, "EPSG:3857", "EPSG:4326");
-
+  basIsSet++;
+  map.getLayers().removeAt(map.getLayers().getArray().length-1)
   createRound(pos[1], pos[0], 3);
+  createRound(info.lat,info.lng,4,"red")
   //addMapPoint(pos[1], pos[0], 'test', 0)
 });
 
-var createRound = (lat, lon, rad) => {
+var createRound = (lat, lon, rad,color="blue") => {
   var centerLongitudeLatitude = ol.proj.fromLonLat([lon, lat]);
 
   var layer = new ol.layer.Vector({
@@ -76,7 +84,7 @@ var createRound = (lat, lon, rad) => {
     style: [
       new ol.style.Style({
         stroke: new ol.style.Stroke({
-          color: "blue",
+          color: color,
           width: 3,
         }),
         fill: new ol.style.Fill({
@@ -85,5 +93,7 @@ var createRound = (lat, lon, rad) => {
       }),
     ],
   });
+
   map.addLayer(layer);
 };
+//map.getLayers().removeAt(4)//удалить слои

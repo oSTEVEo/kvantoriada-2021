@@ -49,6 +49,28 @@ app.get("/front", (req, res) => {
     });
     console.log("front");
 });
+var a = 0;
+var b = 0;
+
+app.get("/setback", (req, res) => {
+    a+=Math.round(Math.random()*10);
+    res.send("");
+});
+
+
+app.get('/getback', (req, res) => {
+    res.send(""+a)
+  })
+
+  app.get("/setzar", (req, res) => {
+    b=5;
+    res.send("");
+});
+
+
+app.get('/getzar', (req, res) => {
+    res.send(""+b)
+  })
 
 app.get("/read", (req, res) => {
     console.log("Data:", buf);
@@ -59,3 +81,6 @@ app.get("/read", (req, res) => {
 app.listen(httpPort, () => {
     console.log(`App at http://localhost:${httpPort}`);
 });
+
+
+                

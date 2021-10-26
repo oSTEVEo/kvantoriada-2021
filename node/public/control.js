@@ -1,3 +1,5 @@
+var basIsSet=1;
+
 function httpGet(theUrl, callback = () => {}) {
   var xmlHttp = new XMLHttpRequest();
   xmlHttp.open("GET", theUrl, true); // false for synchronous request
@@ -19,18 +21,38 @@ var info = {
   charge: 0,
   angle: 0,
 };
+var bac = 0;
+var zar = 0;
 
 function generaleView() {
+  charges = Math.round(((info.charge-533)*100)/(255));
+  if (charges>100){
+    charges = 100;
+  } else if (charges<0){
+    charges = 0;
+  } 
+
+  if(zar>0){
+    charges+="% ϟ"
+  }else{
+    charges+='%';
+  }
+
+
   document.getElementById("logElem").innerHTML =
     "Температура: " +
     info.term +
-    "; Заполненость бака: " +
-    info.fill +
-    "; Зарядка: " +
-    info.charge +
-    "; Угол по компасу: " +
+    "C°; Заполненость бака: " +
+    bac +
+    "%; Зарядка: " +
+    charges +
+    " ; Угол по компасу: " +
     info.angle;
-  //12v - 788, 533
+  //12v - 788, 8v 533
+  if(map.getLayers().getArray().length>basIsSet)
+    map.getLayers().removeAt(map.getLayers().getArray().length-1)//удалить слои
+
+  createRound(info.lat,info.lng,4,"red")
 }
 
 function parsData(text) {
@@ -59,7 +81,23 @@ function parsData(text) {
   return 1;
 }
 
+function getDataPrintCikle(){
+  setInterval(() => {
+    httpGet('/getback',(text)=>{
+      bac = text;
+    })
+
+    httpGet('/getzar',(text)=>{
+      zar = text;
+    })
+
+    getDataPrint()
+  }, 3000);
+}
+
 function getDataPrint() {
+
+
   httpGet("/front?cmd=S");
   setTimeout(() => {
     var buff = httpGet("/read", (text) => {
@@ -72,4 +110,16 @@ function getDataPrint() {
 
 function read() {
   document.getElementById("text").innerText = httpGet("/read");
+}
+
+function addBasePoint(){
+  basIsSet = 2;
+  //map.removeLayer(vectorLayer);
+  map.getLayers().removeAt(map.getLayers().getArray().length-1)
+  addMapPoint(info.lat,info.lng,"base",0)
+  //addMapPoint(56.332871,44.038892,"base",0)
+}
+
+function ComeBack(){
+  return;
 }

@@ -3,7 +3,7 @@ body {
   padding: 0;
   text-align: center;
   background: black;
-  color: Wheat;
+  color: wheat;
 }
 
 .map {
@@ -27,6 +27,10 @@ body {
   padding: 12px;
   border: 1px solid #c0c0c0;
   background: #ffffff;
+}
+
+.btns {
+  margin:0 auto;
 }
 
 .tabs > label {
@@ -62,6 +66,7 @@ body {
   margin-left: 1.5vh;
   margin-right: 1.5vh;
   background: transparent;
+  padding: 0;
 }
 
 .tabs {
@@ -90,18 +95,7 @@ p {
   margin: 0;
 }
 
-.left-half,
-.right-half {
-  width: 49%;
-  height: 100%;
-  display: inline-flex;
-  background: transparent;
-  margin: 0;
-  padding: 0;
-  align-items: center;
-  justify-content: space-around;
-  flex-direction: column;
-}
+
 
 .left-top-button,
 .right-top-button,
@@ -111,32 +105,108 @@ p {
 .right-bottom-button {
   background: transparent;
   margin: 1%;
+}  
+  .left-top-button,
+  .right-top-button {
+    width: 0;
+    height: 0;
+    border-left: 100px solid transparent;
+    border-right: 100px solid transparent;
+    border-bottom: 200px solid blue;
+    border-radius: 15px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .left-bottom-button,
+  .right-bottom-button {
+    width: 0;
+    height: 0;
+    border-left: 100px solid transparent;
+    border-right: 100px solid transparent;
+    border-top: 200px solid blue;
+    border-radius: 15px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .left-stop-button,
+  .right-stop-button {
+    width: 200px;
+    height: 200px;
+    background: blue;
+    border-radius: 15px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  button {
+    height:145px;
+    width: 30%;
+    margin: 2%; 
+   
+    display: inline-flex;
+  }
+
+
+
+@media screen and (min-width: 0px) and (max-width: 1000px){     
+  .left-top-button,
+  .right-top-button {
+    width: 0;
+    height: 0;
+    border-left: 50px solid transparent;
+    border-right: 50px solid transparent;
+    border-bottom: 150px solid blue;
+    border-radius: 15px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .left-bottom-button,
+  .right-bottom-button {
+    width: 0;
+    height: 0;
+    border-left: 50px solid transparent;
+    border-right: 50px solid transparent;
+    border-top: 150px solid blue;
+    border-radius: 15px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .left-stop-button,
+  .right-stop-button {
+    width: 100px;
+    height: 100px;
+    background: blue;
+    border-radius: 15px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  button {
+    height:45px;
+    width: 40%;
+    margin: 1%; 
+   
+    display: inline-flex;
+  }
+}
+.left-half,
+.right-half
+ {
+  
+  width: 25%;
+  display: inline-block;
+  
+
+}
+.cmds {
+  background: black;
+  height: auto;
+  width: 44%;
+  display: inline-block;
+  margin-top: 1%;
 }
 
-.left-top-button,
-.right-top-button {
-  width: 0;
-  height: 0;
-  border-left: 100px solid transparent;
-  border-right: 100px solid transparent;
-  border-bottom: 200px solid blue;
-  border-radius: 15px;
-}
-
-.left-bottom-button,
-.right-bottom-button {
-  width: 0;
-  height: 0;
-  border-left: 100px solid transparent;
-  border-right: 100px solid transparent;
-  border-top: 200px solid blue;
-  border-radius: 15px;
-}
-
-.left-stop-button,
-.right-stop-button {
-  width: 200px;
-  height: 200px;
-  background: blue;
-  border-radius: 15px;
-}

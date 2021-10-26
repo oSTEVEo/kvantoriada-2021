@@ -31,8 +31,12 @@
             <h1 id="logElem">
                 Температура: -1; Заполненость бака: -1; Зарядка: -1; Угол по компасу: -1
             </h1>
-            <input type="button" value="Обновить информацию" onclick="getDataPrint()" id="update">
+            <div class="btns">
+            <input type="button" value="Подписаться на обновы" onclick="getDataPrintCikle()" id="update">
+            <input type="button" value="Поставить базу" onclick="addBasePoint()" id="base">
+            <input type="button" value="Возврат на базу" onclick="ComeBack()" id="comeback">
             <!-- TOFO: адекватный дизайн -->
+            </div>
             <div id="map" class="map"></div>
             <script src="main.js" type="text/javascript"></script>
         </div>
@@ -44,6 +48,20 @@
                 <div onclick="httpGet('/front?cmd=J');" class="left-stop-button"></div>
                 <div onclick="httpGet('/front?cmd=L');" class="left-bottom-button"></div>
             </div>
+
+
+            <div class="cmds">
+                <button class="button" onclick="httpGet('/front?cmd=W');">Погрузка вкл</button>
+                <button class="button-" onclick="httpGet('/front?cmd=Q');">Погрузка выкл</button>
+                <button class="button" onclick="httpGet('/front?cmd=V');">Бак открыть</button>
+                <button class="button" onclick="httpGet('/front?cmd=B');">Бак закрыть</button>
+                <button class="button" onclick="httpGet('/front?cmd=T');">Выгрузка вкл</button>
+                <button class="button" onclick="httpGet('/front?cmd=N');">Выгрузка выкл</button>
+                <button class="button" onclick="httpGet('/setback');">++rand%</button>
+                <button class="button" onclick="httpGet('/setzar');">ϟϟϟ</button>
+            </div>
+
+            
             <div class="right-half">
                 <div onclick="httpGet('/front?cmd=R');" class="right-top-button"></div>
                 <div onclick="httpGet('/front?cmd=Z');" class="right-stop-button"></div>
