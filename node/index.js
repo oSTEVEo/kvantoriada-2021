@@ -16,17 +16,17 @@ function getParameterByName(name, url) {
     return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
 
-serialPortL.list().then(function(ports) {
-    ports.forEach(function(port) {
+serialPortL.list().then(function (ports) {
+    ports.forEach(function (port) {
         if (port.manufacturer == "FTDI") {
             const por = new serialPortL(port.path);
             sPort = por;
 
-            sPort.on("error", function(err) {
+            sPort.on("error", function (err) {
                 console.log("Error: ", err.message);
             });
 
-            sPort.on("data", function(data) {
+            sPort.on("data", function (data) {
                 buf = buf + data;
                 console.log(data);
             });
@@ -41,7 +41,7 @@ app.get("/front", (req, res) => {
 
     let a = getParameterByName("cmd", req.url);
 
-    sPort.write(a, function(err) {
+    sPort.write(a, function (err) {
         if (err) {
             return console.log("Error on write: ", err.message);
         }
@@ -53,24 +53,22 @@ var a = 0;
 var b = 0;
 
 app.get("/setback", (req, res) => {
-    a+=Math.round(Math.random()*10);
+    a += Math.round(Math.random() * 10);
     res.send("");
 });
-
 
 app.get('/getback', (req, res) => {
-    res.send(""+a)
-  })
+    res.send("" + a)
+})
 
-  app.get("/setzar", (req, res) => {
-    b=5;
+app.get("/setzar", (req, res) => {
+    b = 5;
     res.send("");
 });
 
-
 app.get('/getzar', (req, res) => {
-    res.send(""+b)
-  })
+    res.send("" + b)
+})
 
 app.get("/read", (req, res) => {
     console.log("Data:", buf);
@@ -83,4 +81,3 @@ app.listen(httpPort, () => {
 });
 
 
-                

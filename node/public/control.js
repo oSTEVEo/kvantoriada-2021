@@ -1,6 +1,6 @@
-var basIsSet=1;
+var basIsSet = 1;
 
-function httpGet(theUrl, callback = () => {}) {
+function httpGet(theUrl, callback = () => { }) {
   var xmlHttp = new XMLHttpRequest();
   xmlHttp.open("GET", theUrl, true); // false for synchronous request
   xmlHttp.onreadystatechange = function () {
@@ -24,20 +24,30 @@ var info = {
 var bac = 0;
 var zar = 0;
 
-function generaleView() {
-  charges = Math.round(((info.charge-533)*100)/(255));
-  if (charges>100){
-    charges = 100;
-  } else if (charges<0){
-    charges = 0;
-  } 
+var trig = 0;
 
-  if(zar>0){
-    charges+="% ϟ"
-  }else{
-    charges+='%';
+function generaleView() {
+  charges = Math.round(((info.charge - 533) * 100) / (255));
+  if (charges > 100) {
+    charges = 100;
+  } else if (charges < 0) {
+    charges = 0;
   }
 
+  if (charges < 50&&trig==0) {
+    trig=1;
+    var t = document.createElement('a');
+    t.setAttribute("href","#zatemnenie");
+    t.click()
+    //window.location.href = "http://"+window.location.host + '/menu.html#zatemnenie'
+  }
+/*
+  if (zar > 0) {
+    charges += "% ϟ"
+  } else {
+    charges += '% &nbsp;';
+  }*/
+  charges += "% ϟ"
 
   document.getElementById("logElem").innerHTML =
     "Температура: " +
@@ -49,10 +59,10 @@ function generaleView() {
     " ; Угол по компасу: " +
     info.angle;
   //12v - 788, 8v 533
-  if(map.getLayers().getArray().length>basIsSet)
-    map.getLayers().removeAt(map.getLayers().getArray().length-1)//удалить слои
+  if (map.getLayers().getArray().length > basIsSet)
+    map.getLayers().removeAt(map.getLayers().getArray().length - 1)//удалить слои
 
-  createRound(info.lat,info.lng,4,"red")
+  createRound(info.lat, info.lng, 4, "red")
 }
 
 function parsData(text) {
@@ -81,13 +91,13 @@ function parsData(text) {
   return 1;
 }
 
-function getDataPrintCikle(){
+function getDataPrintCikle() {
   setInterval(() => {
-    httpGet('/getback',(text)=>{
+    httpGet('/getback', (text) => {
       bac = text;
     })
 
-    httpGet('/getzar',(text)=>{
+    httpGet('/getzar', (text) => {
       zar = text;
     })
 
@@ -112,14 +122,14 @@ function read() {
   document.getElementById("text").innerText = httpGet("/read");
 }
 
-function addBasePoint(){
+function addBasePoint() {
   basIsSet = 2;
   //map.removeLayer(vectorLayer);
-  map.getLayers().removeAt(map.getLayers().getArray().length-1)
-  addMapPoint(info.lat,info.lng,"base",0)
+  map.getLayers().removeAt(map.getLayers().getArray().length - 1)
+  addMapPoint(info.lat, info.lng, "base", 0)
   //addMapPoint(56.332871,44.038892,"base",0)
 }
 
-function ComeBack(){
+function ComeBack() {
   return;
 }

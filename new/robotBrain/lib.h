@@ -1,4 +1,4 @@
-#define Trig 8
+#define Trig 13
 #define Echo 9
 
 #define AG0 A2        //Charge
